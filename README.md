@@ -66,3 +66,29 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Elias Walk-through of HW
+
+As a `User`, I want to be able to view my entire `employee directory` at once
+so that I have quick access to their `information`.
+
+The user should be able to sort the `table` by at least one `category`, and
+`filter` the users by at least one `property`.
+
+## Objects
+
+- User
+- Employee Directory
+- User Info
+- Table
+- Category
+- Filter
+- Property
+
+## Components (first iteration)
+
+- Header
+- Filter
+- Table
+  - Properties (table headers - column names)
+  - Data (`User` records)
