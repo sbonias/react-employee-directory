@@ -1,17 +1,13 @@
 import React from 'react';
 // import './Table.css';
 
-function TableData() {
+function TableData(props) {
   return (
-    <div className="Table">
-      <table className="table">
-        <tr>
-          <td>Sam</td>
-          <td>Bonias</td>
-          <td>sbonias84@gmail.com</td>
-        </tr>
-      </table>
-    </div>
+          <tr>
+            <td>{props.firstName}</td>
+            <td>{props.lastName}</td>
+            <td>{props.email}</td>
+          </tr>
   );
 }
 

@@ -6,19 +6,19 @@ import API from '../../utils/API';
 
 class Table extends Component {
   state = {
-    result: {},
+    result: [],
     search: '',
   };
 
   // When this component mounts, execute API
 
   componentDidMount() {
-    this.searchEmployees('Sam');
+    this.searchEmployees('');
   }
 
   searchEmployees = (query) => {
     API.getRandomEmployees(query)
-      .then((res) => this.setState({ result: res.data }))
+      .then((res) => this.setState({ result: res.data.results }))
       .catch((err) => console.log(err));
   };
 
@@ -32,18 +32,24 @@ class Table extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    this.searchEmployees(this.state.search);
+    this.searchEmployees(this.state.getRandomEmployees);
   };
 
   render() {
     return (
       <div className="Table">
-        <table className="table">
-          <thead>
-            <TableHeader />
-            <TableData />
-          </thead>
-        </table>
+        <TableHeader />
+        {this.state.result.map((item) => {
+          return (
+            <TableData
+              className="tableData-item"
+              key={item.id.value}
+              firstName={item.name.first}
+              lastName={item.name.last}
+              email={item.email}
+            ></TableData>
+          );
+        })}
       </div>
     );
   }
