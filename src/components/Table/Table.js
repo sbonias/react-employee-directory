@@ -7,10 +7,13 @@ import API from '../../utils/API';
 import Filter from '../Filter';
 
 class Table extends Component {
-  state = {
-    result: [],
-    search: '',
-  };
+  constructor() {
+    super();
+    this.state = {
+      result: [],
+      filterResults: [],
+    };
+  }
 
   // When this component mounts, execute API
   componentDidMount() {
@@ -18,7 +21,7 @@ class Table extends Component {
       .then((res) =>
         this.setState({
           result: res.data.results,
-          // filtered: res.data.results,
+          filterResults: res.data.results,
         })
       )
       .catch((err) => console.log(err));
@@ -36,7 +39,20 @@ class Table extends Component {
   handleFormSubmit = (event) => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    this.setState({ search: '' });
+    this.setState({ search: event.target.value });
+  };
+
+  // https://medium.com/@AndrewBonner2/filter-results-with-react-f746dc7984c
+  filterResults = (resultFilter) => {
+    let filterResults = this.state.result;
+    filterResults = filterResults.filter((result) => {
+      let resultName =
+        result.firstName.toLowerCase() + result.lastName.toLowerCase();
+      return resultName.indexOf(resultFilter.toLowerCase()) !== -1;
+    });
+    this.setState({
+      filterResults,
+    });
   };
 
   render() {
@@ -58,6 +74,11 @@ class Table extends Component {
             ></TableData>
           );
         })}
+        <Filter
+          result={this.state.filterResults}
+          match={this.props.match}
+          onChange={this.filterResults}
+        ></Filter>
       </div>
     );
   }
