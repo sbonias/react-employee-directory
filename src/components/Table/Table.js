@@ -32,8 +32,9 @@ class Table extends Component {
     // const name = event.target.name;
     console.log(value);
     this.setState({
-      search: value,
+      filterResults: value,
     });
+    this.filterResults();
   };
 
   handleFormSubmit = (event) => {
