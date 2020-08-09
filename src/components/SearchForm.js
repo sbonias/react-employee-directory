@@ -16,12 +16,12 @@ function SearchForm(props) {
           id="search"
         />
         <br />
-        <button onClick={props.handleFormSubmit} className="btn btn-primary">
-          Search
-        </button>
       </div>
     </form>
   );
 }
 
 export default SearchForm;
+
+// a place in state to store search term
+// the function that handles when the user changes the input (form)

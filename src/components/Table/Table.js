@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 // import './Table.css';
 import TableData from './Table-Data';
 import TableHeader from './Table-Header';
+import SearchForm from '../SearchForm';
 import API from '../../utils/API';
+import Filter from '../Filter';
 
 class Table extends Component {
   state = {
@@ -11,39 +13,45 @@ class Table extends Component {
   };
 
   // When this component mounts, execute API
-
   componentDidMount() {
-    this.searchEmployees('');
+    API.getRandomEmployees()
+      .then((res) =>
+        this.setState({
+          result: res.data.results,
+          // filtered: res.data.results,
+        })
+      )
+      .catch((err) => console.log(err));
   }
 
-  searchEmployees = (query) => {
-    API.getRandomEmployees(query)
-      .then((res) => this.setState({ result: res.data.results }))
-      .catch((err) => console.log(err));
-  };
-
   handleInputChange = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
+    let value = event.target.value;
+    // const name = event.target.name;
+    console.log(value);
     this.setState({
-      [name]: value,
+      search: value,
     });
   };
 
   handleFormSubmit = (event) => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    this.searchEmployees(this.state.getRandomEmployees);
+    this.setState({ search: '' });
   };
 
   render() {
     return (
       <div className="Table">
+        <SearchForm
+          handleFormSubmit={this.handleFormSubmit}
+          handleInputChange={this.handleInputChange}
+          search={this.state.search}
+        />
         <TableHeader />
         {this.state.result.map((item) => {
           return (
             <TableData
               className="tableData-item"
-              key={item.id.value}
               firstName={item.name.first}
               lastName={item.name.last}
               email={item.email}

@@ -3,8 +3,8 @@ import React from 'react';
 
 function TableHeader() {
   return (
-    <div className="TableHeader">
-      <table className="tableHeader">
+    // <div className="TableHeader">
+    //   <table className="tableHeader">
         <tbody>
         <tr>
           <th>First Name</th>
@@ -12,8 +12,8 @@ function TableHeader() {
           <th>E-mail</th>
         </tr>
         </tbody>
-      </table>
-    </div>
+    //   </table>
+    // </div>
   );
 }
 
