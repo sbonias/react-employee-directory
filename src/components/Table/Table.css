@@ -1,0 +1,18 @@
+tr {
+  background-color: honeydew;
+  padding: 50px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+tr:hover {
+  background-color: #d4d1d1;
+}
+
+th {
+  background-color: slategray;
+  font-weight: bold;
+  padding: 20px;
+  text-align: center;
+  border: 0.5px solid black;
+}
