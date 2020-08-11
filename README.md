@@ -24,7 +24,7 @@ An application that provides the ability to view a random listing of employees a
 
 - Filter not working
 - Needs Sort feature
-- Needs CSS Styling
+- Needs better CSS Styling
 
 ## Technology Used
 
